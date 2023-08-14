@@ -1,0 +1,29 @@
+{
+    "Hexeract": {
+        "checkpoints": [
+            {
+                "steps": 388,
+                "file_path": "results/ppo/Hexeract/Hexeract-388.onnx",
+                "reward": -1.0,
+                "creation_time": 1692051121.5388985,
+                "auxillary_file_paths": [
+                    "results/ppo/Hexeract/Hexeract-388.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 388,
+            "file_path": "results/ppo/Hexeract.onnx",
+            "reward": -1.0,
+            "creation_time": 1692051121.5388985,
+            "auxillary_file_paths": [
+                "results/ppo/Hexeract/Hexeract-388.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "1.11.0+cu102"
+    }
+}

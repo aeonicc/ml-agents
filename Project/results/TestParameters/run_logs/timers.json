@@ -1,0 +1,42 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1692042563",
+        "python_version": "3.10.12 (main, Jun 11 2023, 05:26:28) [GCC 11.4.0]",
+        "command_line_arguments": "/home/aeon/.local/bin/mlagents-learn config/config.yaml --run-id=TestParameters",
+        "mlagents_version": "0.30.0",
+        "mlagents_envs_version": "0.30.0",
+        "communication_protocol_version": "1.5.0",
+        "pytorch_version": "1.11.0+cu102",
+        "numpy_version": "1.21.2",
+        "end_time_seconds": "1692042580"
+    },
+    "total": 16.83884225499787,
+    "count": 1,
+    "self": 0.38822270200034836,
+    "children": {
+        "run_training.setup": {
+            "total": 0.21988300899829483,
+            "count": 1,
+            "self": 0.21988300899829483
+        },
+        "TrainerController.start_learning": {
+            "total": 16.230736543999228,
+            "count": 1,
+            "self": 0.00567340000270633,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 16.224976443998457,
+                    "count": 1,
+                    "self": 16.224976443998457
+                },
+                "TrainerController._save_models": {
+                    "total": 8.669999806443229e-05,
+                    "count": 1,
+                    "self": 8.669999806443229e-05
+                }
+            }
+        }
+    }
+}
