@@ -73,24 +73,61 @@ public class Hexeract : Agent
     */
     public override void OnActionReceived(ActionBuffers actions)
     {
-        int changingLine = GetChangingLine();
-        // Use changingLine as initial direction for AI
-        Vector3 initialMoveDirection = Vector3.zero;
+        int changingLine = TossCoins();
+        Vector3 moveDirection = Vector3.zero;
 
         switch(changingLine)
         {
-            case 0: initialMoveDirection = new Vector3(1, 0, 0); break;  // Right
-            case 1: initialMoveDirection = new Vector3(-1, 0, 0); break; // Left
-            case 2: initialMoveDirection = new Vector3(0.5f, 0, Mathf.Sqrt(3) / 2); break; // Top right
-            case 3: initialMoveDirection = new Vector3(-0.5f, 0, Mathf.Sqrt(3) / 2); break; // Top left
-            case 4: initialMoveDirection = new Vector3(0.5f, 0, -Mathf.Sqrt(3) / 2); break; // Bottom right
-            case 5: initialMoveDirection = new Vector3(-0.5f, 0, -Mathf.Sqrt(3) / 2); break; // Bottom left
+            case 0: moveDirection = new Vector3(1, 0, 0); break;  // Right
+            case 1: moveDirection = new Vector3(-1, 0, 0); break; // Left
+            case 2: moveDirection = new Vector3(0.5f, 0, Mathf.Sqrt(3) / 2); break; // Top right
+            case 3: moveDirection = new Vector3(-0.5f, 0, Mathf.Sqrt(3) / 2); break; // Top left
+            case 4: moveDirection = new Vector3(0.5f, 0, -Mathf.Sqrt(3) / 2); break; // Bottom right
+            case 5: moveDirection = new Vector3(-0.5f, 0, -Mathf.Sqrt(3) / 2); break; // Bottom left
         }
 
-        // Move agent in the initial direction a little bit to give it a starting momentum
-        transform.localPosition += initialMoveDirection * moveSpeed;
+        transform.localPosition += moveDirection * Time.deltaTime * moveSpeed;
     }
 
+    private int TossCoins()
+    {
+        List<int> hexagram = new List<int>();
+        int changingLine = -1;
+
+        for (int i = 0; i < 6; i++)
+        {
+            int line = TossThreeCoins();
+
+            if (line == 6 || line == 9) // 6 and 9 are the changing lines
+            {
+                changingLine = i;
+            }
+
+            hexagram.Add(line);
+        }
+
+        // If no changing lines were found, return a default value or you could randomize it
+        if (changingLine == -1)
+        {
+            return Random.Range(0, 6);
+        }
+
+        return changingLine;
+    }
+
+    private int TossThreeCoins()
+    {
+        int countOfTails = 0;
+        for (int i = 0; i < 3; i++)
+        {
+            if (Random.value <= 0.5f) countOfTails++;
+        }
+
+        if (countOfTails == 0) return 9; // 3 heads
+        if (countOfTails == 1) return 8;
+        if (countOfTails == 2) return 7;
+        return 6; // 3 tails
+    }
 /*
     public override void Heuristic(in ActionBuffers actionsOut)
     {
